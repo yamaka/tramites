@@ -10,6 +10,7 @@
     <script src="{{asset('/js/flat-ui.min.js')}}"></script>
 </head>
 <body>
+<div class="container">
 <nav class="navbar navbar-default navbar-lg navbar-embossed" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -134,5 +135,6 @@
 
 
 @yield('content')
+</div>
 </body>
 </html>

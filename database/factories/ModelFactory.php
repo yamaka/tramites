@@ -29,7 +29,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\tramites::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->randomElement(['cedulaIdentidad','liciencia','pasaporte']),
-        'descripcion' => $faker->text
+        'descripcion' => $faker->text,
+        'id_entpub'=>factory(App\EntidadPublica::class)->create()->id,
     ];
 });
 
@@ -38,5 +39,26 @@ $factory->define(App\solicitudes::class, function ($faker){
      'id_user'=>factory(App\User::class)->create()->id,
       'id_tramite'=>factory(App\tramites::class)->create()->id,
         'fecha_soli'=>$faker->date($format='Y-m-d',$max='now')
+    ];
+});
+$factory->define(App\Requisito::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->text
+    ];
+});
+$factory->define(App\TieneRequisito::class, function(Faker\Generator $faker){
+    return [
+        'id_tramite'=>factory(App\tramites::class)->create()->id,
+        'id_requisito'=>factory(App\Requisito::class)->create()->id,
+    ];
+});
+$factory->define(App\EntidadPublica::class,function(Faker\Generator $faker){
+    return[
+        'nombre_razonSocial'=>$faker->name,
+        'direccion'=>$faker->address,
+        'fono'=>$faker->phoneNumber,
+        'latitude'=>$faker->latitude,
+        'longitude'=>$faker->longitude
     ];
 });

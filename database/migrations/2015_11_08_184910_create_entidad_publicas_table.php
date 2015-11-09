@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTramitesTable extends Migration
+class CreateEntidadPublicasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,13 @@ class CreateTramitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tramites', function (Blueprint $table) {
+        Schema::create('entidad_publicas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->integer('id_entpub')->unsigned();
-            $table->foreign('id_entpub')->references('id')->on('tramites')->onDelete('cascade');
+            $table->string('nombre_razonSocial');
+            $table->string('direccion');
+            $table->string('fono');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
         });
     }
@@ -29,6 +30,7 @@ class CreateTramitesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tramites');
+        Schema::drop('entidad_publicas');
     }
 }
+

@@ -24,3 +24,5 @@ Route::get('/', function () {
 });
 
 Route::resource('users','userController');
+//Route::resource('entidad','EntidadPublicaController');
+Route::resource('tramite','TramiteController');

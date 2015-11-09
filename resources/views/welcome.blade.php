@@ -21,25 +21,40 @@
             </button>
             <a class="navbar-brand" href="#">Tramites</a>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-collapse-9">
-            <form class="navbar-form navbar-right" role="form">
+
+            <div class="navbar-collapse collapse" id="navbar-collapse-9">
+            <form class="navbar-form navbar-right" role="form" method="POST" action="{{ url('/auth/login') }}">
+                {!! csrf_field() !!}
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
+                    <input type="email" placeholder="Email" class="form-control" name="email" value="{{ old('email') }}">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
+                    <input type="password" placeholder="Password" class="form-control" name="password">
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
                 <!--<a href="{{route('users.create')}}"><button type="button" class="btn btn-info" >Register</button></a>-->
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Register</button>
             </form>
         </div><!--/.navbar-collapse -->
+
+    </div>
+    <div class="panel-heading">Login</div>
+    <div class="panel-body">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
     </div>
 </nav>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -51,8 +66,9 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::open(array('action'=>'userController@store','class'=>'form-horizontal')) !!}
-                        <!--<form action="/users/create" method="post" class="form-horizontal" role="form">-->
+
+                <form action="{{ url('/auth/login') }}" method="post" class="form-horizontal" role="form">
+                    {!! csrf_field() !!}
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                     <div class="col-sm-4">
@@ -65,6 +81,12 @@
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     </div>
                 </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Confirm Password</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" name="password_confirmation">
+                        </div>
+                    </div>
 
                 <div class="form-group">
                     <label for="inputFirstname" class="col-lg-2 control-label">Name</label>
@@ -119,13 +141,11 @@
                     </div>
                 </div>
 
-
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 {!! Form::submit('registrar',['class'=>'btn btn-primary']) !!}
             </div>
-            {!! Form::close () !!}
+        </form>
 
         </div>
 

@@ -22,11 +22,49 @@
 						{!! csrf_field() !!}
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
+							<label class="col-md-4 control-label">First name</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="first_name" value="{{ old('name') }}">
+								<input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}">
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Last name</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="last_name" value="{{old('last_name')}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">User name</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="user" value="{{old('user')}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Occupation</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="occupation" value="{{old('occupation')}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Birthday</label>
+							<div class="col-md-6">
+								<input type="date" class="form-control" name="birthday" value="{{old('birthday')}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">CI</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="ci" value="{{old('ci')}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Address</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="address" value="{{old('address')}}">
+							</div>
+						</div>
+
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">E-Mail Address</label>

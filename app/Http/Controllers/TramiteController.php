@@ -19,7 +19,10 @@ class TramiteController extends Controller
      */
     public function index()
     {
-        //
+        $t=tramites::all();
+        return view('tramite.index',[
+            'tramites'=>$t
+        ]);
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
-
 /*
+
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
@@ -14,7 +14,6 @@
 Route::get('prueba',function(){
     return "hola desde route prueba";
 });
-
 Route::get('nombre/{nombre}',function($nombre){
         return "mi nombre es ".$nombre;
     });

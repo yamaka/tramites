@@ -71,4 +71,8 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    public function redirectPath()
+    {
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+    }
 }

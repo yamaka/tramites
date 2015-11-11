@@ -1,5 +1,4 @@
 @extends('layouts.header')
-@section('title','Requisito para '.$tramite->nombre)
 @section('content')
     <link rel="stylesheet" href="{{asset('css/leaflet.css')}}">
     <script src="{{asset('/js/leaflet.js')}}"></script>

@@ -10,6 +10,7 @@
 | database. Just tell the factory how a default model should look.
 |
 */
+use App\tramites;
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
@@ -48,8 +49,10 @@ $factory->define(App\Requisito::class, function (Faker\Generator $faker) {
     ];
 });
 $factory->define(App\TieneRequisito::class, function(Faker\Generator $faker){
+    $t=tramites::lists('id')->all();
     return [
-        'id_tramite'=>factory(App\tramites::class)->create()->id,
+        'id_tramite'=>$faker->randomElement($t),
+        // 'id_tramite'=>factory(App\tramites::class)->create()->id,
         'id_requisito'=>factory(App\Requisito::class)->create()->id,
     ];
 });

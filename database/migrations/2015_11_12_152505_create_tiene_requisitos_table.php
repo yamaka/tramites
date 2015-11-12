@@ -32,4 +32,3 @@ class CreateTieneRequisitosTable extends Migration
         Schema::drop('tiene_requisitos');
     }
 }
-

@@ -33,4 +33,3 @@ class CreateEntidadPublicasTable extends Migration
         Schema::drop('entidad_publicas');
     }
 }
-

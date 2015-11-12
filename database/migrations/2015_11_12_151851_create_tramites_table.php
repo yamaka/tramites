@@ -17,7 +17,7 @@ class CreateTramitesTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->integer('id_entpub')->unsigned();
-            $table->foreign('id_entpub')->references('id')->on('tramites')->onDelete('cascade');
+            $table->foreign('id_entpub')->references('id')->on('entidad_publicas')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Requisito;
-use App\tramites;
-use App\TieneRequisito;
-use App\EntidadPublica;
-class TramiteController extends Controller
+
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +16,7 @@ class TramiteController extends Controller
      */
     public function index()
     {
-        $t=tramites::all();
-        return view('tramite.index',[
-            'tramites'=>$t
-        ]);
+        return view('admin.index');
     }
 
     /**
@@ -32,12 +26,7 @@ class TramiteController extends Controller
      */
     public function create()
     {
-        if(!auth()->guest()){
-            return view('tramite.create');
-        }else{
-            return redirect()->route('home');
-        }
-
+        //
     }
 
     /**
@@ -48,19 +37,7 @@ class TramiteController extends Controller
      */
     public function store(Request $request)
     {
-        $e=new EntidadPublica();
-        $e->nombre_razonSocial=$request->input('nombre_razonSocial');
-        $e->direccion=$request->input('direccion');
-        $e->fono=$request->input('fono');
-        $e->latitude=$request->input('lat');
-        $e->longitude=$request->input('lng');
-        $e->save();
-        $t=new Tramites();
-        $t->nombre=$request->input('nombre');
-        $t->descripcion=$request->input('descripcion');
-        $t->id_entpub=$e->id;
-        $t->save();
-        return redirect()->action('TramiteController@index');;
+        //
     }
 
     /**
@@ -71,16 +48,7 @@ class TramiteController extends Controller
      */
     public function show($id)
     {
-        $t=tramites::find($id);
-        $r=requisito::all();
-        $tr=tienerequisito::all();
-        $e=entidadPublica::all();
-        return view('tramite.show',[
-            'tramite'=>$t,
-            'req'=>$r,
-            'tiene_req'=>$tr,
-            'ent'=>$e
-        ]);
+        //
     }
 
     /**

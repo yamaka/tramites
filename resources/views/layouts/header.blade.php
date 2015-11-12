@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{asset('/css/flat-ui.min.css')}}">
     <script src="{{asset('/js/jquery.min.js')}}"></script>
     <script src="{{asset('/js/flat-ui.min.js')}}"></script>
+    @yield('scripts')
     <script>
         // Some general UI pack related JS
         // Extend JS String with repeat method

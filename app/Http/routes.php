@@ -18,10 +18,11 @@ Route::get('nombre/{nombre}',function($nombre){
         return "mi nombre es ".$nombre;
     });
 Route::resource('controller','pruebaController');
-Route::get('/', function () {
+Route::get('/',['as'=>'home', function () {
     return view('welcome');
-});
+}]);
 
 Route::resource('users','userController');
 //Route::resource('entidad','EntidadPublicaController');
 Route::resource('tramite','TramiteController');
+Route::resource('admin','AdminController');

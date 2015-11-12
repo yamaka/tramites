@@ -177,7 +177,11 @@
                 <ul class="nav navbar-nav">
                     <li class="@yield('active')"><a href="{{route('tramite.index')}}" >Lista de Tramites</a></li>
                 </ul>
-
+            @if(!auth()->guest() and strcomp(auth()->role(),'admin'))
+            <ul class="nav navbar-nav">
+                    <li class="@yield('active')"><a href="{{route('admin.index')}}" >Admin</a></li>
+                </ul>
+                @endif
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones para el usuario {{Auth::user()->user}} <b class="caret"></b></a>

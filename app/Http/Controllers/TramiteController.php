@@ -32,7 +32,7 @@ class TramiteController extends Controller
      */
     public function create()
     {
-        if(!auth()->guest()){
+        if(!auth()->guest()and auth()->id()==12){
             return view('tramite.create');
         }else{
             return redirect()->route('home');

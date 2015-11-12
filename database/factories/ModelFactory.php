@@ -18,7 +18,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->email,
         'ci' => $faker->buildingNumber,
-        'role' => $faker->randomElement(['user','editor']),
+        'role' => $faker->randomElement(['user','editor','admin']),
         'address' =>$faker-> address,
         'occupation' => $faker ->randomElement(['abagado','profesor','musico']),
         'birthday' => $faker ->date(),

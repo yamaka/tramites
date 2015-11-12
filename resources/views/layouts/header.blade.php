@@ -177,8 +177,8 @@
                 <ul class="nav navbar-nav">
                     <li class="@yield('active')"><a href="{{route('tramite.index')}}" >Lista de Tramites</a></li>
                 </ul>
-            @if(!auth()->guest() and strcomp(auth()->role(),'admin'))
-            <ul class="nav navbar-nav">
+                @if(Auth::user()->role=='admin')
+                <ul class="nav navbar-nav">
                     <li class="@yield('active')"><a href="{{route('admin.index')}}" >Admin</a></li>
                 </ul>
                 @endif

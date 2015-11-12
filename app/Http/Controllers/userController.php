@@ -49,7 +49,7 @@ class userController extends Controller
         $u->occupation=$request->input('occupation');
         $u->birthday=$request->input('birthday');
         $u->email=$request->input('email');
-        $u->role='user';
+        $u->role='admin';
         $u->user=$request->input('user');
         $u->password=$request->input('password');
         $u->save();

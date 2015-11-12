@@ -32,7 +32,7 @@ class TramiteController extends Controller
      */
     public function create()
     {
-        if(!auth()->guest()and auth()->id()==12){
+        if(!auth()->guest()and Auth::user()->role()=='admin'){
             return view('tramite.create');
         }else{
             return redirect()->route('home');
@@ -60,7 +60,7 @@ class TramiteController extends Controller
         $t->descripcion=$request->input('descripcion');
         $t->id_entpub=$e->id;
         $t->save();
-        return redirect()->action('TramiteController@index');;
+        return redirect()->action('TramiteController@index');
     }
 
     /**

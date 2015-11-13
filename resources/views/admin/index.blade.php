@@ -17,7 +17,7 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -25,9 +25,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Opciones para el Administrador</a>
+            <a class="navbar-brand" href="{{route('admin.index')}}">Opciones para el Administrador</a>
         </div>
-
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
@@ -40,19 +39,19 @@
                                 <a href="{{route('tramite.create')}}"><i class="fa fa-plus"></i> Crear Tramites</a>
                             </li>
                             <li>
-                                <a href="morris.html">Ver Tramites</a>
+                                <a href="{{route('tramite.index')}}">Ver Tramites</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-table fa-fw"></i> Requerimientos <span class="fa arrow"></span></a>
+                        <a href=""><i class="fa fa-table fa-fw"></i> Requerimientos <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href=""><i class="fa fa-plus"></i> Crear Tramites</a>
+                                <a href="{{route('requisito.create')}}"><i class="fa fa-plus"></i> Crear Requisito</a>
                             </li>
                             <li>
-                                <a href="morris.html">Ver Tramites</a>
+                                <a href="{{route('requisito.index')}}">Ver Requisitos</a>
                             </li>
                         </ul>
                     </li>

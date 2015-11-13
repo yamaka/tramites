@@ -10,6 +10,8 @@ use App\Requisito;
 use App\tramites;
 use App\TieneRequisito;
 use App\EntidadPublica;
+use DB;
+
 class TramiteController extends Controller
 {
     /**
@@ -32,12 +34,8 @@ class TramiteController extends Controller
      */
     public function create()
     {
-        if(!auth()->guest()and Auth::user()->role()=='admin'){
-            return view('tramite.create');
-        }else{
-            return redirect()->route('home');
-        }
-
+        $r=Requisito::all();
+        return view('tramite.create')->withrequ($r);
     }
 
     /**
@@ -55,11 +53,21 @@ class TramiteController extends Controller
         $e->latitude=$request->input('lat');
         $e->longitude=$request->input('lng');
         $e->save();
+
         $t=new Tramites();
         $t->nombre=$request->input('nombre');
         $t->descripcion=$request->input('descripcion');
         $t->id_entpub=$e->id;
         $t->save();
+        foreach(explode(',', $request->input('requisitos')) as $req_id){
+            DB::table('tiene_requisitos')->insert(
+                [
+                    'id_tramite' => $t->id,
+                    'id_requisito' => $req_id
+                ]
+            );
+        }
+
         return redirect()->action('TramiteController@index');
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('admin.index')
 @section('title', 'Admin')
 @section('scripts')
 
@@ -13,68 +13,23 @@
     <script src="{{asset('/js/leaflet.js')}}"></script>
 
 @endsection
-@section('content')
-
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Opciones para el Administrador</a>
-            </div>
-
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Tramites<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href=""><i class="fa fa-plus"></i> Crear Tramites</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Ver Tramites</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Requerimientos <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href=""><i class="fa fa-plus"></i> Crear Tramites</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Ver Tramites</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <div id="page-wrapper">
-            {!! Form::open(array('action'=>'TramiteController@store','class'=>'form-horizontal')) !!}
-            <h3>Datos del nuevo Tramite</h3>
+@section('wrapper')
+    {!! Form::open(array('action'=>'TramiteController@store','class'=>'form-horizontal')) !!}
+    <h3>Datos del nuevo Tramite</h3>
             {!! Form::label('nombre', 'Nombre:')!!}
             {!! Form::text('nombre', '',array('class'=>'form-control','placeholder'=>'Nombre del Tramite'))!!}
             {!! Form::label('descripcion', 'Descripcion:')!!}
             {!! Form::textarea('descripcion', '',array('class'=>'form-control','placeholder'=>'Descripcion del Tramite'))!!}
-            {!! Form::label('posi','Ubicacion:')!!}
+            <h3>Seleccionar requisitos para el Tramite</h3>
+            <input type="hidden" id="requisitos" name="requisitos"/>
+            <select name="listreq" id="listreq" data-toggle="select" multiple placeholder="Seleccione los requisitos" class="form-control multiselect multiselect-default mrs mbm">
+            @foreach($requ as $r)
+                <option value="{{$r->id}}">{{$r->name}}</option>
+            @endforeach
+            </select>
+
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createReq"><i class="fa fa-plus"></i> Añadir Requisito</button>
+
             <h3>Datos de la Entidad</h3>
             {!! Form::label('nombre_razonSocial', 'Nombre Entidad:')!!}
             {!! Form::text('nombre_razonSocial', '',array('class'=>'form-control','placeholder'=>'Nombre de la entidad'))!!}
@@ -113,9 +68,47 @@
                     document.getElementById('lat').value=(m.lat);
                     document.getElementById('lng').value=(m.lng);
                 }
+
+                $(function(){
+
+                    $('#listreq').on('change', function(){
+                        $('#requisitos').val($(this).val());
+                    });
+                });
             </script>
+
+    <div class="modal fade" id="createReq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Añadir Nuevo Requisito</h4>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(array('action'=>'RequisitoController@store','class'=>'form-horizontal')) !!}
+                    <h3>Datos del nuevo Requisito</h3>
+                    <div class="form-group">
+                    {!! Form::label('name', 'Nombre:',array('class'=>'col-md-4 control-label'))!!}
+                        <div class="col-md-6">
+                            {!! Form::text('name', '',array('class'=>'form-control','placeholder'=>'Nombre del Requisito'))!!}
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                    {!! Form::label('description', 'Descripcion:' ,array('class'=>'col-md-4 control-label'))!!}
+                        <div class="col-md-6">
+                            {!! Form::textarea('description', '',array('class'=>'form-control','placeholder'=>'Descripcion del Requisito'))!!}
+                        </div>
+
+                        </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                    {!! Form::submit('Guardar', array('class'=>'btn btn-primary')) !!}
+                            </div>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
-        <!-- /#page-wrapper -->
     </div>
-    <!-- /#wrapper -->
 @endsection

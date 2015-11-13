@@ -17,7 +17,8 @@ class RequisitoController extends Controller
      */
     public function index()
     {
-
+        $req=Requisito::all();
+        return view ('requisito.index',['req'=>$req]);
     }
 
     /**
@@ -27,7 +28,7 @@ class RequisitoController extends Controller
      */
     public function create()
     {
-        //
+        return view ('requisito.create');
     }
 
     /**
@@ -38,7 +39,11 @@ class RequisitoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $r=new Requisito();
+        $r->name=$request->input('name');
+        $r->description=$request->input('description');
+        $r->save();
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -50,8 +55,8 @@ class RequisitoController extends Controller
     public function show($id)
     {
         $r=requisito::find($id);
-        return view('requisitos.show',[
-            'req'=>$r
+        return view('requisito.show',[
+            'r'=>$r
         ]);
     }
 

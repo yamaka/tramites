@@ -24,17 +24,19 @@ Route::get('/',['as'=>'home', function () {
 
 Route::resource('users','userController');
 //Route::resource('entidad','EntidadPublicaController');
-Route::resource('tramite','TramiteController',['only'=>['index','store','show','create']]);
+Route::resource('tramite','TramiteController',['only'=>['index','store','show','edit','create']]);
 Route::get('requisito/create',[
     'as'=>'requisito.create',
     'middleware'=>['auth','admin'],
     'uses'=>'RequisitoController@create'
 ]);
 
-Route::resource('requisito','RequisitoController',['only'=>['index','show']]);
-
+Route::resource('requisito','RequisitoController');
+//Route::resource('requisito','RequisitoController',['only'=>['index','show','edit','update']]);
+Route::get('requisitoList', ['as'=>'requisitoList', 'middleware'=>['auth','admin'],'uses'=>'RequisitoController@requisitoList']);
 Route::post('requisito.store','RequisitoController@store');
 
+Route::get('tramiteList','TramiteController@tramiteList');
 Route::get('tramite/create',[
     'as'=>'tramite.create',
     'middleware' => ['auth','admin'],

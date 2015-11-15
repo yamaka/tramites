@@ -19,9 +19,21 @@ class TramiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function tramiteList()
+    {
+        $t=Tramites::all();
+        return response()->json($t->toArray());
+
+
+    }
+
     public function index()
     {
         $t=tramites::all();
+
+        if(!auth()->guest() and auth()->user()->role=='admin' ){
+            return view('tramite.indexAdmin')->with('tramites',$t);
+        }
         return view('tramite.index',[
             'tramites'=>$t
         ]);
@@ -53,14 +65,14 @@ class TramiteController extends Controller
         $e->latitude=$request->input('lat');
         $e->longitude=$request->input('lng');
         $e->save();
-
         $t=new Tramites();
         $t->nombre=$request->input('nombre');
         $t->descripcion=$request->input('descripcion');
         $t->id_entpub=$e->id;
         $t->save();
-        foreach(explode(',', $request->input('requisitos')) as $req_id){
-            DB::table('tiene_requisitos')->insert(
+
+        foreach(array_unique(explode(',', $request->input('requisitos'))) as $req_id){
+          DB::table('tiene_requisitos')->insert(
                 [
                     'id_tramite' => $t->id,
                     'id_requisito' => $req_id
@@ -99,7 +111,8 @@ class TramiteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $t=Tramites::find($id);
+        return response()->json($t->toArray());
     }
 
     /**
@@ -111,7 +124,9 @@ class TramiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $t=Tramites::find($id);
+        var_dump($request);
+
     }
 
     /**

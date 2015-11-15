@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Requisito;
-
+use Illuminate\Routing\Route;
 class RequisitoController extends Controller
 {
     /**
@@ -15,9 +15,19 @@ class RequisitoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function requisitoList(){
+        $r=Requisito::all();
+        return response()->json($r->toArray());
+    }
+
     public function index()
     {
         $req=Requisito::all();
+        if(!auth()->guest() and auth()->user()->role=='admin' ){
+            return view('requisito.indexAdmin')->with('requisitos',$req);
+        }
         return view ('requisito.index',['req'=>$req]);
     }
 
@@ -39,11 +49,17 @@ class RequisitoController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->ajax()){
+            Requisito::create($request->all());
+            return response()->json([
+                'mensaje'=>'Añadido Correctamente'
+            ]);
+        }
         $r=new Requisito();
         $r->name=$request->input('name');
         $r->description=$request->input('description');
         $r->save();
-        return redirect()->route('admin.index');
+        return redirect()->action('RequisitoController@index');
     }
 
     /**
@@ -68,7 +84,8 @@ class RequisitoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $r=Requisito::find($id);
+        return response()->json($r->toArray());
     }
 
     /**
@@ -80,7 +97,11 @@ class RequisitoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $r=Requisito::find($id);
+        $r->name=$request->name;
+        $r->description=$request->description;
+        $r->save();
+        return response()->json(['mensaje'=>'Listo']);
     }
 
     /**
@@ -89,8 +110,12 @@ class RequisitoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $re, $id)
     {
-        //
+        $r= Requisito::findOrFail($id);
+        $r->delete();
+        return response()->json([
+            'mensaje'=>'Requisito Eliminado'
+        ]);
     }
 }

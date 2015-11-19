@@ -47,3 +47,8 @@ Route::get('admin',[
     'middleware' => ['auth','admin'],
     'uses' => 'AdminController@index'
 ]);
+Route::get('mitramite',[
+    'as'=>'seguimientoTramite.index',
+    'middleware' => ['auth'],
+    'uses' => 'seguimientoTramiteController@index'
+    ]);

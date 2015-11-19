@@ -11,7 +11,7 @@
 |
 */
 use App\tramites;
-
+use App\User;
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'first_name' => $faker->name,
@@ -63,5 +63,14 @@ $factory->define(App\EntidadPublica::class,function(Faker\Generator $faker){
         'fono'=>$faker->phoneNumber,
         'latitude'=>$faker->latitude,
         'longitude'=>$faker->longitude
+    ];
+});
+$factory->define(App\seguimientoTramite::class, function(Faker\Generator $faker){
+    $t=User::lists('id')->all();
+    $p=tramites::lists('id')->all();
+    return [
+        'id_user'=>$faker->randomElement($t),
+        // 'id_tramite'=>factory(App\tramites::class)->create()->id,
+        'id_tramites'=>$faker->randomElement($p)
     ];
 });

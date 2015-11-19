@@ -176,6 +176,7 @@
             @else
                 <ul class="nav navbar-nav">
                     <li class="@yield('active')"><a href="{{route('tramite.index')}}" >Lista de Tramites</a></li>
+                    <li ><a href="{{route('tramite.index')}}" >Mis Tramites</a></li>
                 </ul>
                 @if(Auth::user()->role=='admin')
                 <ul class="nav navbar-nav">
@@ -184,7 +185,7 @@
                 @endif
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones para el usuario {{Auth::user()->user}} <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido:  {{Auth::user()->user}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                                 <li class="divider"></li>
                             <li><a href="{{ url('/auth/logout') }}" >Logout</a></li>

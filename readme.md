@@ -7,3 +7,7 @@
 	git push origin master
 	//si les pide usuario o contraseña
 	//colocar
+#Fix class no found in migrate:refresh --sedd
+
+    composer dump -o
+    

@@ -11,7 +11,6 @@ class seguimientoTramitesTableSeeder extends Seeder
      */
     public function run()
     {
-                factory(App\seguimientoTramite::class,10)->create();
-
+        factory(App\seguimientoTramite::class,10)->create();
     }
 }

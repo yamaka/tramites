@@ -20,8 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TieneRequisitoTableSeeder::class);
         $this->call(seguimientoTramitesTableSeeder::class);
 
-
-
         Model::reguard();
     }
 }

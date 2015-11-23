@@ -44,6 +44,26 @@
             <img class="third-slide" src="{{asset('/image/ministerio.jpg')}}" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
+                    <h1>Bienvenido a Tramites en Bolivia.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="third-slide" src="{{asset('/image/segip.jpg')}}" alt="Third slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>One more for good measure.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="third-slide" src="{{asset('/image/pasaporte.jpg')}}" alt="Third slide">
+            <div class="container">
+                <div class="carousel-caption">
                     <h1>One more for good measure.</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                     <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>

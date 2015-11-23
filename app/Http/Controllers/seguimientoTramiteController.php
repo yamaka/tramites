@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\seguimientoTramite;
@@ -23,6 +23,7 @@ class seguimientoTramiteController extends Controller
         $s=seguimientoTramite::all();
         return view('seguimiento.index',[
             'seg'=>$s,
+
             'tramites'=>$t,
             'user'=>auth()->user()->id
             ]);
@@ -46,7 +47,19 @@ class seguimientoTramiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('seguimiento_tramites')->where('id_user','=',Auth()->user()->id)->delete();
+
+        foreach(explode(',', $request->input('tramites')) as $req){
+
+
+            DB::table('seguimiento_tramites')->insert(
+                [
+                    'id_user'=>Auth()->user()->id,
+                    'id_tramites' => $req,
+                ]
+            );
+        }
+        return redirect()->route('seguimientoTramite.index');
     }
 
     /**

@@ -24,7 +24,7 @@
             <select name="listreq" id="listreq" data-toggle="select" multiple placeholder="Seleccione los requisitos" class="form-control multiselect multiselect-default mrs mbm">
 
             </select>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createReq"><i class="fa fa-plus"></i> Añadir Requisito</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createReq"><i class="fa fa-plus"></i> Añadir Nuevo Requisito</button>
             <h3>Datos de la Entidad</h3>
             {!! Form::label('nombre_razonSocial', 'Nombre Entidad:')!!}
             {!! Form::text('nombre_razonSocial', '',array('class'=>'form-control','placeholder'=>'Nombre de la entidad'))!!}

@@ -11,6 +11,7 @@ use App\tramites;
 use App\TieneRequisito;
 use App\EntidadPublica;
 use DB;
+use App\seguimientoTramite;
 
 class TramiteController extends Controller
 {
@@ -30,12 +31,13 @@ class TramiteController extends Controller
     public function index()
     {
         $t=tramites::all();
-
+        $s=seguimientoTramite::all();
         if(!auth()->guest() and auth()->user()->role=='admin' ){
             return view('tramite.indexAdmin')->with('tramites',$t);
         }
         return view('tramite.index',[
-            'tramites'=>$t
+            'tramites'=>$t,
+            'seguimiento'=>$s
         ]);
     }
 

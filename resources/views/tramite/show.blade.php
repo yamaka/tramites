@@ -5,6 +5,7 @@
     <h1>Requisitos para {{$tramite->nombre}}</h1>
     <div class="col-md-5">
         <p>{{$tramite->descripcion}}</p>
+
         <ol>
         @foreach($tiene_req as $tr)
             @if($tr->id_tramite==$tramite->id)

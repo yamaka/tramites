@@ -34,6 +34,10 @@
             {!! Form::text('fono', '',array('class'=>'form-control','placeholder'=>'Telefono'))!!}
             {!! Form::label('ubicacion', 'Ubicación en el Mapa:')!!}
             <div id="map" style="width: 600px; height: 400px"></div>
+            {!! Form::label('banco', 'Banco:')!!}
+            {!! Form::text('banco', '',array('class'=>'form-control','placeholder'=>'Entidad Bancaria'))!!}
+            {!! Form::label('nroCuenta', 'Nro Cuenta:')!!}
+            {!! Form::text('nroCuenta', '',array('class'=>'form-control','placeholder'=>'Nro Cuenta'))!!}
             {!! Form::input('hidden','lat','',array('id'=>'lat','class'=>'form-control')) !!}
             {!! Form::input('hidden','lng','',array('id'=>'lng','class'=>'form-control')) !!}
             {!! Form::submit('Guardar', array('class'=>'btn btn-primary')) !!}

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\NroCuenta;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Requisito;
@@ -12,7 +12,8 @@ use App\TieneRequisito;
 use App\EntidadPublica;
 use DB;
 use App\seguimientoTramite;
-
+use App\procedimiento;
+use App\pasos;
 class TramiteController extends Controller
 {
     /**
@@ -30,6 +31,7 @@ class TramiteController extends Controller
 
     public function index()
     {
+
         $t=tramites::all();
         $s=seguimientoTramite::all();
         if(!auth()->guest() and auth()->user()->role=='admin' ){
@@ -37,7 +39,7 @@ class TramiteController extends Controller
         }
         return view('tramite.index',[
             'tramites'=>$t,
-            'seguimiento'=>$s
+            'seguimiento'=>$s,
         ]);
     }
 
@@ -72,6 +74,11 @@ class TramiteController extends Controller
         $t->descripcion=$request->input('descripcion');
         $t->id_entpub=$e->id;
         $t->save();
+        $b=new NroCuenta();
+        $b->nro=$request->input('nroCuenta');
+        $b->entidad_bancaria=$request->input('banco');
+        $b->id_entpub=$e->id;
+        $b->save();
 
         foreach(array_unique(explode(',', $request->input('requisitos'))) as $req_id){
           DB::table('tiene_requisitos')->insert(
@@ -97,11 +104,17 @@ class TramiteController extends Controller
         $r=requisito::all();
         $tr=tienerequisito::all();
         $e=entidadPublica::all();
+        $n=NroCuenta::all();
+        $p=procedimiento::all();
+        $pa=pasos::all();
         return view('tramite.show',[
             'tramite'=>$t,
             'req'=>$r,
             'tiene_req'=>$tr,
-            'ent'=>$e
+            'ent'=>$e,
+            'nro'=>$n,
+            'pro'=>$p,
+            'pas'=>$pa,
         ]);
     }
 

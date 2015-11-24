@@ -21,6 +21,5 @@
     @endforeach
     </ol>
     </div>
-      
 
 @endsection

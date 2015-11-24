@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProcedimientosTable extends Migration
+class CreatePasosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateProcedimientosTable extends Migration
      */
     public function up()
     {
-        Schema::create('procedimientos', function (Blueprint $table) {
+        Schema::create('pasos', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->string('pasos');
-            $table->string('referencias');
-            $table->integer('id_tramite')->unsigned();
-            $table->foreign('id_tramite')->references('id')->on('tramites')->onDelete('cascade');
+            $table->string('paso');
+            $table->integer('id_proc')->unsigned();
+            $table->foreign('id_proc')->references('id')->on('procedimientos')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateProcedimientosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('procedimientos');
+        Schema::drop('pasos');
     }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NroCuenta extends Model
+class pasos extends Model
 {
-    protected $table='nro_cuentas';
+    protected $table="pasos";
 }

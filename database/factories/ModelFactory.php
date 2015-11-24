@@ -74,3 +74,27 @@ $factory->define(App\seguimientoTramite::class, function(Faker\Generator $faker)
         'id_tramites'=>$faker->randomElement($p)
     ];
 });
+
+$factory->define(App\NroCuenta::class, function(Faker\Generator $faker){
+    $e=\App\EntidadPublica::lists('id')->all();
+    return [
+        'nro'=>$faker->creditCardNumber,
+        'entidad_bancaria'=>$faker->name,
+        'id_entpub'=>$faker->randomElement($e),
+
+    ];
+});
+$factory->define(App\procedimiento::class, function(Faker\Generator $faker){
+    $t=tramites::lists('id')->all();
+    return [
+        'pasos'=>$faker->text,
+        'referencias'=>$faker->url,
+        'id_tramite'=>$faker->randomElement($t),
+    ];
+});$factory->define(App\pasos::class, function(Faker\Generator $faker){
+    $p=\App\procedimiento::lists('id')->all();
+    return [
+        'paso'=>$faker->text(20),
+        'id_proc'=>$faker->randomElement($p),
+    ];
+});

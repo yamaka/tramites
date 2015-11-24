@@ -21,7 +21,7 @@
     @endforeach
     </ol>
     </div>
-      
+
     <div class="col-md-3">
         <img  src="{{ asset('/image/ima.png')}}" alt="">
     </div>

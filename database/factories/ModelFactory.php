@@ -74,3 +74,13 @@ $factory->define(App\seguimientoTramite::class, function(Faker\Generator $faker)
         'id_tramites'=>$faker->randomElement($p)
     ];
 });
+
+$factory->define(App\NroCuenta::class, function(Faker\Generator $faker){
+    $e=\App\EntidadPublica::lists('id')->all();
+    return [
+        'nro'=>$faker->creditCardNumber,
+        'entidad_bancaria'=>$faker->name,
+        'id_entpub'=>$faker->randomElement($e),
+
+    ];
+});

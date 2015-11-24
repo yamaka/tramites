@@ -16,6 +16,17 @@
             @endif
         @endforeach
         </ol>
+        <div class="well">
+            <h4>Depositos en:</h4>
+            @foreach($nro as $n)
+                @if($n->id_entpub==$tramite->id_entpub)
+                    Banco: {{$n->entidad_bancaria}}
+                    <br>
+                    Nro de Cuenta: {{$n->nro}}
+                    <br>
+                @endif
+            @endforeach
+        </div>
     </div>
     <div class="col-md-6">
         <article class="panel panel-default">

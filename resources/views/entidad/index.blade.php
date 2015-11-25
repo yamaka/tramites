@@ -28,7 +28,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Editar Datos del Requisito</h4>
+                    <h4 class="modal-title" id="myModalLabel">Editar Datos de la Entidad</h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token"/>
@@ -72,7 +72,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Esta Seguro de Eliminar este Requisito</h4>
+                    <h4 class="modal-title" id="myModalLabel">Esta Seguro de Eliminar esta Entidad</h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token"/>

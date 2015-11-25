@@ -66,13 +66,22 @@
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-table fa-fw"></i> Entida Publica<span class="fa arrow"></span></a>
+                        <a href=""><i class="fa fa-table fa-fw"></i> Entidad Publica<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="{{route('entidad.create')}}"><i class="fa fa-plus"></i> Crear Entidad Publica</a>
                             </li>
                             <li>
                                 <a href="{{route('entidad.index')}}">Ver Entidades Publicas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-table fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="{{route('users.index')}}">Ver usuarios</a>
                             </li>
                         </ul>
                     </li>

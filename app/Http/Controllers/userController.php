@@ -16,6 +16,10 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function usersList(){
+        $r=User::all();
+        return response()->json($r->toArray());
+    }
     public function index()
     {
         $user=user::all();
@@ -29,7 +33,7 @@ class userController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+
     }
 
     /**
@@ -65,7 +69,7 @@ class userController extends Controller
      */
     public function show($id)
     {
-        return view ('users.show',['user'=>user::find($id)]);
+
     }
 
     /**
@@ -76,7 +80,8 @@ class userController extends Controller
      */
     public function edit($id)
     {
-        //
+        $r=User::find($id);
+        return response()->json($r->toArray());
     }
 
     /**
@@ -88,7 +93,17 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $r=User::find($id);
+        $r->first_name=$request->first_name;
+        $r->last_name=$request->last_name;
+        $r->ci=$request->ci;
+        $r->address=$request->address;
+        $r->occupation=$request->occupation;
+        $r->birthday=$request->birthday;
+        $r->email=$request->email;
+        $r->user=$request->user;
+        $r->save();
+        return response()->json(['mensaje'=>'Listo']);
     }
 
     /**
@@ -99,6 +114,10 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $r=User::findOrFail($id);
+        $r->delete();
+        return response()->json([
+            'mensaje'=>'Requisito Eliminado'
+        ]);
     }
 }

@@ -18,7 +18,7 @@ class CreateSeguimientoTramitesTable extends Migration
             $table->integer('id_tramites')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_tramites')->references('id')->on('tramites')->onDelete('cascade');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

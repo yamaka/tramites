@@ -19,7 +19,7 @@ class CreateEntidadPublicasTable extends Migration
             $table->string('fono');
             $table->string('latitude');
             $table->string('longitude');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

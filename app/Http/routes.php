@@ -53,3 +53,8 @@ Route::get('mitramite',[
     'middleware' => ['auth'],
     'uses' => 'seguimientoTramiteController@index'
     ]);
+Route::resource('cuenta','NroCuentaController');
+Route::get('cuentaList', ['as'=>'cuentaList', 'middleware'=>['auth','admin'],'uses'=>'NroCuentaController@cuentaList']);
+
+Route::resource('entidad','EntidadPublicaController');
+Route::get('entidadList', ['as'=>'entidadList', 'middleware'=>['auth','admin'],'uses'=>'EntidadPublicaController@entidadList']);

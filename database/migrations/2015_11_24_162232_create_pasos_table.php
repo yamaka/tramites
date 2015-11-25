@@ -18,7 +18,7 @@ class CreatePasosTable extends Migration
             $table->integer('id_proc')->unsigned();
             $table->foreign('id_proc')->references('id')->on('procedimientos')
                 ->onDelete('cascade');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

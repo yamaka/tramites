@@ -19,7 +19,7 @@ class CreateProcedimientosTable extends Migration
             $table->string('referencias');
             $table->integer('id_tramite')->unsigned();
             $table->foreign('id_tramite')->references('id')->on('tramites')->onDelete('cascade');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

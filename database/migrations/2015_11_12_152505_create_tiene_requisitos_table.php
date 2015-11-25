@@ -18,7 +18,7 @@ class CreateTieneRequisitosTable extends Migration
             $table->integer('id_requisito')->unsigned();
             $table->foreign('id_tramite')->references('id')->on('tramites')->onDelete('cascade');
             $table->foreign('id_requisito')->references('id')->on('requisitos')->onDelete('cascade');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

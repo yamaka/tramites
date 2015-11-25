@@ -54,6 +54,27 @@
                                 <a href="{{route('requisito.index')}}">Ver Requisitos</a>
                             </li>
                         </ul>
+                    </li><li>
+                        <a href=""><i class="fa fa-table fa-fw"></i> Nro Cuenta <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('cuenta.create')}}"><i class="fa fa-plus"></i> Crear Nro de Cuenta</a>
+                            </li>
+                            <li>
+                                <a href="{{route('cuenta.index')}}">Ver Nro de Cuentas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-table fa-fw"></i> Entida Publica<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('entidad.create')}}"><i class="fa fa-plus"></i> Crear Entidad Publica</a>
+                            </li>
+                            <li>
+                                <a href="{{route('entidad.index')}}">Ver Entidades Publicas</a>
+                            </li>
+                        </ul>
                     </li>
 
 

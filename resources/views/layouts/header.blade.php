@@ -56,6 +56,8 @@
                 // Tooltips
                 $('[data-toggle=tooltip]').tooltip('show');
 
+                $('select[name="entpub"]').select2({dropdownCssClass: 'show-select-search'});
+
                 // jQuery UI Sliders
                 var $slider = $('#slider');
                 if ($slider.length > 0) {

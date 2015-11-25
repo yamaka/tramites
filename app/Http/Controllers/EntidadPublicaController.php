@@ -17,11 +17,15 @@ class EntidadPublicaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function entidadList(){
+        $r=EntidadPublica::all();
+        return response()->json($r->toArray());
+    }
     public function index()
     {
-        $r=requisito::all();
-        return view ('Entidad.index',[
-            'r'=>$r
+        $r=EntidadPublica::all();
+        return view ('entidad.index',[
+            'ent'=>$r
         ]);
     }
 
@@ -32,7 +36,7 @@ class EntidadPublicaController extends Controller
      */
     public function create()
     {
-        //
+        return view('entidad.create');
     }
 
     /**
@@ -43,7 +47,13 @@ class EntidadPublicaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $e=new EntidadPublica();
+        $e->nombre_razonSocial=$request->input('nombre_razonSocial');
+        $e->direccion=$request->input('direccion');
+        $e->fono=$request->input('fono');
+        $e->latitude=$request->input('lat');
+        $e->longitude=$request->input('lng');
+        $e->save();
     }
 
     /**
@@ -65,7 +75,8 @@ class EntidadPublicaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $r=EntidadPublica::find($id);
+        return response()->json($r->toArray());
     }
 
     /**
@@ -77,7 +88,14 @@ class EntidadPublicaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $r=EntidadPublica::find($id);
+        $r->nombre_razonSocial=$request->nombre_razonSocial;
+        $r->direccion=$request->direccion;
+        $r->fono=$request->fono;
+        $r->latitude=$request->latitude;
+        $r->longitude=$request->longitude;
+        $r->save();
+        return response()->json(['mensaje'=>'Listo']);
     }
 
     /**
@@ -88,6 +106,10 @@ class EntidadPublicaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $r=EntidadPublica::findOrFail($id);
+        $r->delete();
+        return response()->json([
+            'mensaje'=>'Entidad Eliminada'
+        ]);
     }
 }

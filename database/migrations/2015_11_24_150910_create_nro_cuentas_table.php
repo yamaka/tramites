@@ -18,7 +18,7 @@ class CreateNroCuentasTable extends Migration
             $table->string('entidad_bancaria');
             $table->integer('id_entpub')->unsigned();
             $table->foreign('id_entpub')->references('id')->on('entidad_publicas')->onDelete('cascade');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

@@ -23,7 +23,7 @@ class CreateSolicitudesTable extends Migration
             $table->foreign('id_tramite')->references('id')
                 ->on('tramites')
                 ->onDelete('cascade');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

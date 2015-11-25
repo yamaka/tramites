@@ -2,30 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\EntidadPublica;
 use Illuminate\Http\Request;
-use DB;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\seguimientoTramite;
-use App\tramites;
-use App\User;
-class seguimientoTramiteController extends Controller
+use App\NroCuenta;
+class NroCuentaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function cuentaList(){
+        $r=NroCuenta::all();
+        return response()->json($r->toArray());
+    }
     public function index()
     {
-        $t=tramites::all();
-        $u=User::all();
-        $s=seguimientoTramite::all();
-        return view('seguimiento.index',[
-            'seg'=>$s,
-            'tramites'=>$t,
-            'user'=>auth()->user()->id
-            ]);
+        $n=NroCuenta::all();
+        return view('NroCuenta.index',[
+            'cuenta'=>$n
+        ]);
     }
 
     /**
@@ -35,7 +34,10 @@ class seguimientoTramiteController extends Controller
      */
     public function create()
     {
-        //
+        $e=EntidadPublica::all();
+        return view('NroCuenta.create',[
+            'ent'=>$e
+        ]);
     }
 
     /**
@@ -46,19 +48,15 @@ class seguimientoTramiteController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('seguimiento_tramites')->where('id_user','=',Auth()->user()->id)->delete();
+        if($request->ajax()){
 
-        foreach(explode(',', $request->input('tramites')) as $req){
-
-
-            DB::table('seguimiento_tramites')->insert(
-                [
-                    'id_user'=>Auth()->user()->id,
-                    'id_tramites' => $req,
-                ]
-            );
         }
-        return redirect()->route('seguimientoTramite.index');
+        $r=new NroCuenta();
+        $r->entidad_bancaria=$request->input('banco');
+        $r->nro=$request->input('nro');
+        $r->id_entpub=$request->input('entpub');
+        $r->save();
+        return redirect()->action('NroCuentaController@index');
     }
 
     /**
@@ -69,7 +67,7 @@ class seguimientoTramiteController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -80,7 +78,8 @@ class seguimientoTramiteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $r=NroCuenta::find($id);
+        return response()->json($r->toArray());
     }
 
     /**
@@ -92,7 +91,11 @@ class seguimientoTramiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $r=NroCuenta::find($id);
+        $r->entidad_bancaria=$request->entidad_bancaria;
+        $r->nro=$request->nro;
+        $r->save();
+        return response()->json(['mensaje'=>'Listo']);
     }
 
     /**
@@ -103,6 +106,10 @@ class seguimientoTramiteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $r=NroCuenta::findOrFail($id);
+        $r->delete();
+        return response()->json([
+            'mensaje'=>'Requisito Eliminado'
+        ]);
     }
 }

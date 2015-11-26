@@ -11,6 +11,6 @@ class TramitesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\tramites::class,10)->create();
+        factory(App\tramites::class,30)->create();
     }
 }

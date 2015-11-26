@@ -30,7 +30,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Editar Datos del Requisito</h4>
+                    <h4 class="modal-title" id="myModalLabel">Editar Datos del Usuario</h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token"/>
@@ -68,7 +68,7 @@
                     <div class="form-group">
                         {!! Form::label('birthday', 'Fecha Nac:',array('class'=>'col-md-4 control-label'))!!}
                         <div class="col-md-6">
-                            {!! Form::text('birthday', '',array('class'=>'form-control','placeholder'=>''))!!}
+                            {!! Form::date('birthday', '',array('class'=>'form-control','placeholder'=>''))!!}
                         </div>
                     </div>
                     <div class="form-group">

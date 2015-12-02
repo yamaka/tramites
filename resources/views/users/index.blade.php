@@ -142,6 +142,7 @@
                 var route="http://localhost:8000/users/"+value+"";
                 var token=$('#token').val();
                 $.ajax({
+
                     url:route,
                     headers:{'X-CSRF-TOKEN' : token},
                     type:'DELETE',

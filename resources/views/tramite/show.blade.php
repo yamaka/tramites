@@ -71,15 +71,15 @@
                 <script>
                     //var coordinates = document.getElementById('coordinates');
 
-                    var map = L.map('map').setView([{{$e->latitude}},{{$e->longitude}} ], 17);
-                   //  var map = L.map('map').setView([-16.503002, -68.129139 ], 16);
+                   // var map = L.map('map').setView([{{$e->latitude}},{{$e->longitude}} ], 17);
+                     var map = L.map('map').setView([-16.503002, -68.129139 ], 16);
                     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                         maxZoom: 18,
                         attribution: 'Tramites v1.0',
                         id: 'examples.map-i875mjb7'
                     }).addTo(map);
-                    var marker =L.marker([{{$e->latitude}},{{$e->longitude}}]).addTo(map)
-                  // var marker =L.marker([-16.503002, -68.129139]).addTo(map)
+                   // var marker =L.marker([{{$e->latitude}},{{$e->longitude}}]).addTo(map)
+                  var marker =L.marker([-16.503002, -68.129139]).addTo(map)
                             .bindPopup("<b>{{$e->nombre_razonSocial}}</b><br />").openPopup();
                     var popup = L.popup();
                 </script>

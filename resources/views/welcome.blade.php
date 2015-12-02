@@ -23,7 +23,7 @@
     </ol>   
     <div class="carousel-inner" role="listbox" >
         <div class="item active">
-            <img class="first-slide" src="{{asset('/image/bandera.jpg')}}" alt="First slide" >
+            <img class="first-slide" src="{{asset('/image/ministerio.jpg')}}" alt="First slide" >
             <div class="container" >
                 <div class="carousel-caption" >
                     <h1>Guia de Trámites</h1>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="item">
-            <img class="third-slide" src="{{asset('/image/ministerio.jpg')}}" alt="Third slide">
+            <img class="third-slide" src="{{asset('/image/bandera.jpg')}}" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Bienvenido a Tramites en La Paz.</h1>
@@ -97,7 +97,7 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Las Entidades Publicas en La Paz<span class="text-muted">Habitualmente</span></h4>
+                <h2 class="featurette-heading">Las Entidades Publicas en La Paz<span class="text-muted">Habitualmente</span></h2>
                 <p class="lead">Cumplen un rol muy importante para, obtener  certificados personales que por derecho 
                     una persona natural la ciudad de La Paz requiere.</p>
             </div>

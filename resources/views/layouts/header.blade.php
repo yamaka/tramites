@@ -179,6 +179,7 @@
                 <ul class="nav navbar-nav">
                     <li class="@yield('active')"><a href="{{route('tramite.index')}}" >Lista de Tramites</a></li>
                     <li class="@yield('activeme')"><a href="{{route('seguimientoTramite.index')}}" >Mis Tramites</a></li>
+                    <li class="@yield('activeEnt')"><a href="{{route('entidadUser')}}" >Entidades</a></li>
                 </ul>
                 @if(Auth::user()->role=='admin')
                 <ul class="nav navbar-nav">

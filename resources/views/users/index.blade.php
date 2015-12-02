@@ -170,10 +170,8 @@
 
                 });
             };
-
             $('#update').click(function(){
                 var id=$('#id').val();
-
                 var f=$('#first_name').val();
                 var l=$('#last_name').val();
                 var c=$('#ci').val();

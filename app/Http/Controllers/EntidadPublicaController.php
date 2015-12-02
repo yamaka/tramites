@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\tramites;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,7 +25,12 @@ class EntidadPublicaController extends Controller
     public function index()
     {
         $r=EntidadPublica::all();
-        return view ('entidad.index',[
+        if(!auth()->guest() and auth()->user()->role=='admin' ){
+            return view ('entidad.index',[
+                'ent'=>$r
+            ]);
+        }
+        return view ('entidad.indexUser',[
             'ent'=>$r
         ]);
     }
@@ -64,7 +70,12 @@ class EntidadPublicaController extends Controller
      */
     public function show($id)
     {
-        //
+        $t=tramites::all();
+        $e=EntidadPublica::find($id);
+        return view('entidad.show',[
+            'entidad'=>$e,
+            'tramites'=>$t
+        ]);
     }
 
     /**

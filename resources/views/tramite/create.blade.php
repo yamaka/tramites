@@ -20,7 +20,7 @@
             {!! Form::label('descripcion', 'Descripcion:')!!}
             {!! Form::textarea('descripcion', '',array('class'=>'form-control','placeholder'=>'Descripcion del Tramite'))!!}
             <h3>Seleccionar requisitos para el Tramite</h3>
-            <input type="hidden" id="requisitos" name="requisitos"/>
+            <input type="text" id="requisitos" name="requisitos"/>
             <select name="listreq" id="listreq" data-toggle="select" multiple placeholder="Seleccione los requisitos" class="form-control multiselect multiselect-default mrs mbm">
             </select>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createReq"><i class="fa fa-plus"></i> Añadir Nuevo Requisito</button>
@@ -45,30 +45,7 @@
             {!! Form::submit('Guardar', array('class'=>'btn btn-primary')) !!}
             {!! Form::close() !!}
             <script>
-                var map = L.map('map').setView([-16.504195744555755, -68.12928915023804], 17);
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    maxZoom: 18,
-                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-                    id: 'examples.map-i875mjb7'
-                }).addTo(map);
-
-                var marker =L.marker([-16.504195744555755, -68.12928915023804],{draggable: true}).addTo(map)
-                        .bindPopup("<b>Mueveme!</b><br />A la direccion de la Entidad Publica.").openPopup();
-
-                var popup = L.popup();
-
-                //map.on('click', onMapClick);
-                marker.on('dragend', ondragend);
-                // Set the initial marker coordinate on load.
-                ondragend();
-                function ondragend() {
-                    var m = marker.getLatLng();
-                    //coordinates.innerHTML = 'Latitude: ' + m.lat + '<br />Longitude: ' + m.lng;
-                    document.getElementById('lat').value=(m.lat);
-                    document.getElementById('lng').value=(m.lng);
-                }
+                
                 $(function(){
                     $('#listreq').on('change', function(){
                         $('#requisitos').val($(this).val());

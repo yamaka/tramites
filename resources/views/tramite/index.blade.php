@@ -3,7 +3,7 @@
 @section('active','active')
 @section('scripts')
     <link href="{{asset('/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    @ensection
+    @endsection
     
 @section('content')
     <h1>Tramites</h1>

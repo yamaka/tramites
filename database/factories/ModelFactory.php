@@ -29,8 +29,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 $factory->define(App\tramites::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->randomElement(['cedulaIdentidad','liciencia','pasaporte','mat
-        ricula','certificadoNacimiento','libretaMilitar']),
+        'nombre' => $faker->randomElement(['cedulaIdentidad','liciencia','pasaporte','matricula', 'certificadoNacimiento','libretaMilitar']),
         'descripcion' => $faker->text,
         'id_entpub'=>factory(App\EntidadPublica::class)->create()->id,
     ];

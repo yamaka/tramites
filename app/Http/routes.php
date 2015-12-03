@@ -39,6 +39,11 @@ Route::resource('requisito','RequisitoController');
 Route::get('requisitoList', ['as'=>'requisitoList', 'middleware'=>['auth','admin'],'uses'=>'RequisitoController@requisitoList']);
 Route::post('requisito.store','RequisitoController@store');
 
+Route::resource('procedimiento','ProcedimientoController');
+//Route::resource('requisito','RequisitoController',['only'=>['index','show','edit','update']]);
+Route::get('procedimientoList', ['as'=>'procedimientoList', 'middleware'=>['auth','admin'],'uses'=>'ProcedimientoController@procedimientoList']);
+Route::post('procedimiento.store','ProcedimientoController@store');
+
 Route::get('tramiteList','TramiteController@tramiteList');
 Route::get('tramite/create',[
     'as'=>'tramite.create',

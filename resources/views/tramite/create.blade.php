@@ -25,27 +25,23 @@
             </select>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createReq"><i class="fa fa-plus"></i> Añadir Nuevo Requisito</button>
 
-    <h3>Seleccionar Procedimientos para el Tramite</h3>
+    <h4>Seleccionar Procedimientos para el Tramite</h4>
+
     <input type="hidden" id="procedimientos" name="procedimientos"/>
     <select name="listproc" id="listproc" data-toggle="select" multiple placeholder="Seleccione los procedimientos" class="form-control multiselect multiselect-default mrs mbm">
+        @foreach($proc as $p)
+            <option value="{{$p->id}}">{{$p->pasos}}</option>
+        @endforeach
     </select>
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createProc"><i class="fa fa-plus"></i> Añadir Nuevo Procedimiento</button>
 
-            <h3>Datos de la Entidad</h3>
-            {!! Form::label('nombre_razonSocial', 'Nombre Entidad:')!!}
-            {!! Form::text('nombre_razonSocial', '',array('class'=>'form-control','placeholder'=>'Nombre de la entidad'))!!}
-            {!! Form::label('direccion', 'Direccion:')!!}
-            {!! Form::text('direccion', '',array('class'=>'form-control','placeholder'=>'Dirección'))!!}
-            {!! Form::label('fono', 'Telefono:')!!}
-            {!! Form::text('fono', '',array('class'=>'form-control','placeholder'=>'Telefono'))!!}
-            {!! Form::label('ubicacion', 'Ubicación en el Mapa:')!!}
-            <div id="map" style="width: 600px; height: 400px"></div>
-            {!! Form::label('banco', 'Banco:')!!}
-            {!! Form::text('banco', '',array('class'=>'form-control','placeholder'=>'Entidad Bancaria'))!!}
-            {!! Form::label('nroCuenta', 'Nro Cuenta:')!!}
-            {!! Form::text('nroCuenta', '',array('class'=>'form-control','placeholder'=>'Nro Cuenta'))!!}
-            {!! Form::input('hidden','lat','',array('id'=>'lat','class'=>'form-control')) !!}
-            {!! Form::input('hidden','lng','',array('id'=>'lng','class'=>'form-control')) !!}
+    <h4>Seleccionar La Entidad Publica</h4>
+    <select name="listEnt" id="listEnt" data-toggle="select" placeholder="Seleccione la entidad" class="form-control select select-default mrs mbm">
+        @foreach($ent as $e)
+            <option value="{{$e->id}}">{{$e->nombre_razonSocial}}</option>
+        @endforeach
+    </select>
+
+    <br>
             {!! Form::submit('Guardar', array('class'=>'btn btn-primary')) !!}
             {!! Form::close() !!}
             <script>
@@ -86,6 +82,7 @@
 
                 });
             </script>
+
     <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
         <strong>Se Añadio un nuevo requisito.</strong>
     </div>
@@ -121,6 +118,8 @@
                     <script>
                         $(document).ready(function (){
                             load();
+                            load1();
+
                         });
                         function load(){
 
@@ -160,77 +159,5 @@
                 </div>
             </div>
     </div>
-    <div class="modal fade" id="createProc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Datos del Nuevo Procedimiento</h4>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open()!!}
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token"/>
-                    <div class="form-group">
-                        {!! Form::label('name', 'Nombre:',array('class'=>'col-md-4 control-label'))!!}
-                        <div class="col-md-6">
-                            {!! Form::text('name', '',array('class'=>'form-control','placeholder'=>'Nombre del Requisito'))!!}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('description', 'Descripcion:' ,array('class'=>'col-md-4 control-label'))!!}
-                        <div class="col-md-6">
-                            {!! Form::textarea('description', '',array('class'=>'form-control','placeholder'=>'Descripcion del Requisito'))!!}
-                        </div>
 
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    {!!link_to('#',$title='Añadir',$attributes=['id'=>'add','class'=>'btn btn-primary'],$secure=null)!!}
-                </div>
-                {!!Form::close()!!}
-                <script>
-                    $(document).ready(function (){
-                        load();
-                    });
-                    function load(){
-                        var data=$('#listreq');
-                        var data1=$('#listproc');
-
-                        var route="http://localhost:8000/requisitoList";
-                        //var route1="http://localhost:8000/proceList";
-                        //$('#listreq').empty();
-                        $.get(route, function(res){
-                            $(res).each(function(key, value){
-                                data.append("<option value="+value.id+">"+value.name+"</option>");
-                            });
-                        });
-                        $('#name').val(null);
-                        $('#description').val(null);
-                    }
-                    $('#add').click(function(){
-                        console.log('entre');
-                        var name=$('#name').val();
-                        var desc=$('#description').val();
-                        var route="http://localhost:8000/requisito";
-                        var token=$('#token').val();
-                        $.ajax({
-                            url:route,
-                            headers:{'X-CSRF-TOKEN' : token},
-                            type:'POST',
-                            dataType:'json',
-                            data1:{name:name,description:desc},
-                            success: function(){
-                                load();
-
-                                $('#createReq').modal('toggle');
-                                $('#msj-success').fadeIn('slow');
-                            }
-                        });
-
-                    });
-                </script>
-            </div>
-        </div>
-    </div>
 @endsection

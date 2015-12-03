@@ -22,6 +22,11 @@
     {!! Form::input('hidden','lng','',array('id'=>'lng','class'=>'form-control')) !!}
     {!! Form::label('ubicacion', 'Ubicación en el Mapa:')!!}
     <div id="map" style="width: 600px; height: 400px"></div>
+    {!! Form::label('banco', 'Banco:')!!}
+    {!! Form::text('banco', '',array('class'=>'form-control','placeholder'=>'Entidad Bancaria'))!!}
+    {!! Form::label('nroCuenta', 'Nro Cuenta:')!!}
+    {!! Form::text('nroCuenta', '',array('class'=>'form-control','placeholder'=>'Nro Cuenta'))!!}
+
     <script>
         var map = L.map('map').setView([-16.504195744555755, -68.12928915023804], 17);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

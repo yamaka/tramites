@@ -40,6 +40,7 @@ Route::get('requisitoList', ['as'=>'requisitoList', 'middleware'=>['auth','admin
 Route::post('requisito.store','RequisitoController@store');
 
 Route::resource('procedimiento','ProcedimientoController');
+
 //Route::resource('requisito','RequisitoController',['only'=>['index','show','edit','update']]);
 Route::get('procedimientoList', ['as'=>'procedimientoList', 'middleware'=>['auth','admin'],'uses'=>'ProcedimientoController@procedimientoList']);
 Route::post('procedimiento.store','ProcedimientoController@store');
@@ -67,4 +68,5 @@ Route::resource('entidad','EntidadPublicaController');
 Route::get('entidadUser',['as'=>'entidadUser','uses'=>'EntidadPublicaController@index']);
 
 Route::get('entidadList', ['as'=>'entidadList', 'middleware'=>['auth','admin'],'uses'=>'EntidadPublicaController@entidadList']);
+Route::resource('unidad','UnidadController');
 

@@ -85,6 +85,15 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href=""><i class="fa fa-table fa-fw"></i> Unidades<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('unidad.create')}}">Crear Unidad</a>
+                                <a href="{{route('unidad.index')}}">Ver Unidades</a>
+                            </li>
+                        </ul>
+                    </li>
 
 
                 </ul>

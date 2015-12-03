@@ -96,7 +96,7 @@
                 $('#datos').empty();
                 $.get(route, function(res){
                     $(res).each(function(key, value){
-                        data.append("<tr><td>"+value.nombre_razonSocial+"</td><td>"+value.direccion+"</td><td>"+value.fono+"</td><td><button class='btn btn-info' value="+value.id+" onclick='mostrar(this)' data-toggle='modal'  data-target='#editReq'><i class='fa fa-pencil fa-lg'></i> Editar</button><button class='btn btn-danger' value="+value.id+" onclick='beforeDelete(this)' data-toggle='modal'  data-target='#deleteReq'><i class='fa fa-trash-o fa-lg'></i> Eliminar</button></td></tr>");
+                        data.append("<tr><td><a href='{{route('entidad.index')}}/"+value.id+"'>"+value.nombre_razonSocial+"</a></td><td>"+value.direccion+"</td><td>"+value.fono+"</td><td><button class='btn btn-info' value="+value.id+" onclick='mostrar(this)' data-toggle='modal'  data-target='#editReq'><i class='fa fa-pencil fa-lg'></i> Editar</button><button class='btn btn-danger' value="+value.id+" onclick='beforeDelete(this)' data-toggle='modal'  data-target='#deleteReq'><i class='fa fa-trash-o fa-lg'></i> Eliminar</button></td></tr>");
                     });
                 });
             };

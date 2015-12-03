@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NroCuentaTableSeeder::class);
         $this->call(ProcedimientoTableSeeder::class);
         $this->call(PasosTableSeeder::class);
+        $this->call(UnidadTableSeeder::class);
         Model::reguard();
     }
 }

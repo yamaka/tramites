@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 
 use App\EntidadPublica;
 use App\Requisito;
+use App\NroCuenta;
+use App\Unidad;
 
 class EntidadPublicaController extends Controller
 {
@@ -42,6 +44,7 @@ class EntidadPublicaController extends Controller
      */
     public function create()
     {
+
         return view('entidad.create');
     }
 
@@ -60,6 +63,20 @@ class EntidadPublicaController extends Controller
         $e->latitude=$request->input('lat');
         $e->longitude=$request->input('lng');
         $e->save();
+        $b=new NroCuenta();
+        $b->nro=$request->input('nroCuenta');
+        $b->entidad_bancaria=$request->input('banco');
+        $b->id_entpub=$e->id;
+        $b->save();
+        foreach(array_unique(explode(',', $request->input('unidades'))) as $req_id){
+            DB::table('unidads')->insert(
+                [
+                    'nombre' => $t->id,
+                    'id_requisito' => $req_id
+                ]
+            );
+        }
+        return redirect()->action('EntidadPublicaController@index');
     }
 
     /**

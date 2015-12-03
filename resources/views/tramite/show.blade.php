@@ -3,18 +3,30 @@
     <link rel="stylesheet" href="{{asset('css/leaflet.css')}}">
     <script src="{{asset('/js/leaflet.js')}}"></script>
     <h4 class="text-center">{{$tramite->nombre}}</h4>
+    <h6 class="col-md-6 text-center">Requisitos para: <span class="text-muted">{{$tramite->nombre}}</span> </h6>
+
     @foreach($ent as $e)
         @if($tramite->id_entpub==$e->id)
             <h6 class="col-sm-6 text-center" class="text-center"> Entidad publica :<span class="text-muted">{{$e->nombre_razonSocial}}</span> </h6>
         @endif
     @endforeach
-            <h6 class="col-sm-6 text-center">Nro Unidad: <span class="text-muted">Legalizaciones</span></h6>
+    @foreach($ent as $e)
+        @if($tramite->id_entpub==$e->id)
+            @foreach($uni as $u)
+                @if($u->id_entpub==$e->id)
+                    <h6 class="col-sm-6 text-center">Nro Unidad: <span class="text-muted">{{$u->nombre}}</span></h6>
+                    <h6 class="col-md-6 text-center">Autoridad: <span class="text-muted">{{$u->autoridad}}</span></h6>
 
-    <h6 class="col-md-6 text-center">Requisitos para: <span class="text-muted">{{$tramite->nombre}}</span> </h6>
-    <h6 class="col-md-6 text-center">Autoridad: <span class="text-muted">Mario Hinojosa</span></h6>
+                @endif
+            @endforeach
+        @endif
+    @endforeach
+
+
     <div class="col-md-6">
+        <h4>Descripcion:</h4>
         <p>{{$tramite->descripcion}}</p>
-            <button class='btn btn-info'  data-toggle='modal'  data-target='#editReq'><i class='fa fa-pencil fa-lg'></i> Procedimiento</button>
+            <!--<button class='btn btn-info'  data-toggle='modal'  data-target='#editReq'><i class='fa fa-pencil fa-lg'></i> Procedimiento</button>-->
         <div class="modal fade" id="editReq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -24,6 +36,7 @@
 
                     </div>
                     <div class="modal-body">
+
                         <ol>
                             @foreach($pro as $p)
                                 @if($p->id_tramite==$tramite->id)
@@ -42,7 +55,7 @@
             </div>
         </div>
 
-
+        <h4>Requisitos:</h4>
         <ol>
         @foreach($tiene_req as $tr)
             @if($tr->id_tramite==$tramite->id)

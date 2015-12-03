@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\NroCuenta;
+use App\Unidad;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -51,7 +52,14 @@ class TramiteController extends Controller
     public function create()
     {
         $r=Requisito::all();
-        return view('tramite.create')->withrequ($r);
+        $p=procedimiento::all();
+        $e=EntidadPublica::all();
+        return view('tramite.create',
+            [
+                'ent'=>$e,
+                'requ'=>$r,
+                'proc'=>$p
+            ]);
     }
 
     /**
@@ -62,24 +70,12 @@ class TramiteController extends Controller
      */
     public function store(Request $request)
     {
-        $e=new EntidadPublica();
-        $e->nombre_razonSocial=$request->input('nombre_razonSocial');
-        $e->direccion=$request->input('direccion');
-        $e->fono=$request->input('fono');
-        $e->latitude=$request->input('lat');
-        $e->longitude=$request->input('lng');
-        $e->save();
+
         $t=new Tramites();
         $t->nombre=$request->input('nombre');
         $t->descripcion=$request->input('descripcion');
-        $t->id_entpub=$e->id;
+        $t->id_entpub=$request->input('listEnt');
         $t->save();
-        $b=new NroCuenta();
-        $b->nro=$request->input('nroCuenta');
-        $b->entidad_bancaria=$request->input('banco');
-        $b->id_entpub=$e->id;
-        $b->save();
-
         foreach(array_unique(explode(',', $request->input('requisitos'))) as $req_id){
           DB::table('tiene_requisitos')->insert(
                 [
@@ -107,6 +103,7 @@ class TramiteController extends Controller
         $n=NroCuenta::all();
         $p=procedimiento::all();
         $pa=pasos::all();
+        $u=Unidad::all();
         return view('tramite.show',[
             'tramite'=>$t,
             'req'=>$r,
@@ -115,6 +112,7 @@ class TramiteController extends Controller
             'nro'=>$n,
             'pro'=>$p,
             'pas'=>$pa,
+            'uni'=>$u
         ]);
     }
 

@@ -98,3 +98,12 @@ $factory->define(App\procedimiento::class, function(Faker\Generator $faker){
         'id_proc'=>$faker->randomElement($p),
     ];
 });
+$factory->define(App\Unidad::class, function(Faker\Generator $faker){
+    $e=\App\EntidadPublica::lists('id')->all();
+    return [
+        'nombre'=>$faker->name,
+        'autoridad'=>$faker->userName,
+        'id_entpub'=>$faker->randomElement($e),
+
+    ];
+});
